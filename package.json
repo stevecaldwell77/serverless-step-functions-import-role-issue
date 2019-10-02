@@ -1,0 +1,15 @@
+{
+  "name": "serverless-step-functions-import-role-issue",
+  "version": "1.0.0",
+  "description": "Re-creation of bug in serverless-step-functions that prevents the use of `Fn::ImportValue` in assigning an IAM role to a state machine.",
+  "main": "index.js",
+  "repository": "git@github.com:stevecaldwell77/serverless-step-functions-import-role-issue.git",
+  "author": "Stephen Caldwell <steve@campusexplorer.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "cfn-create-or-update": "^1.5.0",
+    "serverless": "^1.53.0",
+    "serverless-step-functions": "2.4"
+  }
+}

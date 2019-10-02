@@ -1,0 +1,30 @@
+service: serverless-step-functions-import-role-issue
+
+plugins:
+  - serverless-step-functions
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+
+functions:
+  hello:
+    handler: handler.hello
+    role:
+      "Fn::ImportValue": LambdaRoleArn
+
+stepFunctions:
+  stateMachines:
+    hellostepfunc1:
+      name: helloStateMachine
+      definition:
+        Comment: "A Hello World example of the Amazon States Language using an AWS Lambda Function"
+        StartAt: HelloWorld1
+        States:
+          HelloWorld1:
+            Type: Task
+            Resource:
+              Fn::GetAtt: [hello, Arn]
+            End: true
+      role:
+        "Fn::ImportValue": StateMachineRoleArn

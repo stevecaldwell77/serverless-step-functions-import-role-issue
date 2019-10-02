@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Resources:
+  LambdaRole:
+    Type: AWS::IAM::Role
+    Description: IAM Role assumed by our lambda function.
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action: sts:AssumeRole
+            Principal:
+              Service: lambda.amazonaws.com
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+  StateMachineRole:
+    Type: AWS::IAM::Role
+    Description: IAM Role assumed by our state machine.
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action: sts:AssumeRole
+            Principal:
+              Service: states.amazonaws.com
+      Policies:
+        - PolicyName: state-machine-permissions
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: lambda:InvokeFunction
+                Resource: "*"
+
+Outputs:
+  LambdaRoleArn:
+    Export:
+      Name: LambdaRoleArn
+    Value:
+      Fn::GetAtt:
+        - LambdaRole
+        - Arn
+  StateMachineRoleArn:
+    Export:
+      Name: StateMachineRoleArn
+    Value:
+      Fn::GetAtt:
+        - StateMachineRole
+        - Arn
