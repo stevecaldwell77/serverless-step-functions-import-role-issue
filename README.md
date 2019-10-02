@@ -4,6 +4,7 @@ Re-creation of bug in [serverless-step-functions](https://github.com/horike37/se
 
 Assumes you have the following installed on your system:
 
+  * yarn
   * AWS CLI
   * jq
 
