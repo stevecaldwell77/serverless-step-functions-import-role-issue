@@ -10,6 +10,6 @@
   "devDependencies": {
     "cfn-create-or-update": "^1.5.0",
     "serverless": "^1.53.0",
-    "serverless-step-functions": "2.4"
+    "serverless-step-functions": "^2.8.2"
   }
 }
